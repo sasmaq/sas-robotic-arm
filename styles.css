@@ -1,0 +1,15 @@
+.status {
+    height: 150px;
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+.connected  {
+    color: #198754;
+}
+
+.controls {
+    font-size: 2.5rem;
+    height: 5rem;
+    width: 5rem;
+}
