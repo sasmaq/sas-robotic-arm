@@ -1,3 +1,21 @@
+<?php
+require "conn.php";
+
+$isPower = "";
+$isDisabled = "disabled";
+$isLabel = "OFF";
+$query = "SELECT * FROM controller WHERE ID = 0";
+$result = mysqli_query($dbc, $query);
+
+if (mysqli_fetch_assoc($result)["Value"] == 1) {
+  $isPower = "checked";
+  $isDisabled = "";
+  $isLabel = "ON";
+};
+
+mysqli_close($dbc);
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -21,22 +39,67 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <nav class="navbar navbar-light bg-light">
     <div class="container">
-      <form action="#">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="flexSwitchCheck1">
-          <label class="form-check-label" for="flexSwitchCheck1" id="flexSwitchCheck1Label">OFF</label>
-        </div>
-      </form>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheck1" name="flexSwitchCheck1" <?php echo $isPower; ?>>
+        <label class="form-check-label" for="flexSwitchCheck1" id="flexSwitchCheck1Label"><?php echo $isLabel; ?></label>
+      </div>
       <script>
-        $('#flexSwitchCheck1').click(function(){
-            if($(this).prop("checked") == true){
-              $('#flexSwitchCheck1Label').text("ON");
-            }
-            else if($(this).prop("checked") == false){
-              $('#flexSwitchCheck1Label').text("OFF");
-            }
+        $('#flexSwitchCheck1').click(function() {
+          if ($(this).prop("checked") == true) {
+            $('#flexSwitchCheck1Label').text("ON");
+            $("#angles :input").prop("disabled", false);
+            $(".controls").prop("disabled", false);
+            $.ajax({
+              type: "POST",
+              url: "power.php", //your url here
+              data: {
+                'power': 'ON'
+              },
+              dataType: 'json',
+              error: function(response) {
+                console.log(response);
+              }
+            });
+
+          } else if ($(this).prop("checked") == false) {
+            $('#flexSwitchCheck1Label').text("OFF");
+            $("#angles :input").prop("disabled", true);
+            $(".controls").prop("disabled", true);
+            $.ajax({
+              type: "POST",
+              url: "power.php", //your url here
+              data: {
+                'power': 'OFF'
+              },
+              dataType: 'json',
+              error: function(response) {
+                console.log(response);
+              }
+            });
+          }
         });
       </script>
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#settingModal">
+        <i class="bi bi-gear-wide-connected"></i>
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="settingModalLabel">Settings</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <div class="container-lg my-4">
@@ -78,20 +141,20 @@
       <div class="col">
         <div class="card my-2" style="height: 28rem;">
           <div class="card-body">
-            <form action="#">
+            <form id="angles" action="#">
               <label for="Motor1Range" class="form-label">Motor 1</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor1Range">
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor1Range" <?php echo $isDisabled; ?>>
               <label for="Motor2Range" class="form-label">Motor 2</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor2Range">
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor2Range" <?php echo $isDisabled; ?>>
               <label for="Motor3Range" class="form-label">Motor 3</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor3Range">
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor3Range" <?php echo $isDisabled; ?>>
               <label for="Motor4Range" class="form-label">Motor 4</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor4Range">
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor4Range" <?php echo $isDisabled; ?>>
               <label for="Motor5Range" class="form-label">Motor 5</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor5Range">
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor5Range" <?php echo $isDisabled; ?>>
               <label for="Motor6Range" class="form-label">Motor 6</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor6Range">
-              <button type="submit" class="btn btn-dark">Submit</button>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor6Range" <?php echo $isDisabled; ?>>
+              <button type="submit" class="btn btn-dark" <?php echo $isDisabled; ?>>Submit</button>
             </form>
           </div>
         </div>
@@ -106,7 +169,7 @@
                   <td>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark controls">
+                    <button type="button" class="btn btn-outline-dark controls" <?php echo $isDisabled; ?>>
                       <i class="bi bi-chevron-up"></i>
                     </button>
                   </td>
@@ -115,17 +178,17 @@
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-outline-dark controls">
+                    <button type="button" class="btn btn-outline-dark controls" <?php echo $isDisabled; ?>>
                       <i class="bi bi-arrow-counterclockwise"></i>
                     </button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark controls">
+                    <button type="button" class="btn btn-outline-dark controls" <?php echo $isDisabled; ?>>
                       <i class="bi bi-stop-circle-fill"></i>
                     </button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark controls">
+                    <button type="button" class="btn btn-outline-dark controls" <?php echo $isDisabled; ?>>
                       <i class="bi bi-arrow-clockwise"></i>
                     </button>
                   </td>
@@ -134,7 +197,7 @@
                   <td>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark controls">
+                    <button type="button" class="btn btn-outline-dark controls" <?php echo $isDisabled; ?>>
                       <i class="bi bi-chevron-down"></i>
                     </button>
                   </td>
