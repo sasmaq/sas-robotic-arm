@@ -19,6 +19,26 @@
 
 <body>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <form action="#">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheck1">
+          <label class="form-check-label" for="flexSwitchCheck1" id="flexSwitchCheck1Label">OFF</label>
+        </div>
+      </form>
+      <script>
+        $('#flexSwitchCheck1').click(function(){
+            if($(this).prop("checked") == true){
+              $('#flexSwitchCheck1Label').text("ON");
+            }
+            else if($(this).prop("checked") == false){
+              $('#flexSwitchCheck1Label').text("OFF");
+            }
+        });
+      </script>
+    </div>
+  </nav>
   <div class="container-lg my-4">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
       <div class="col">
