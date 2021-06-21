@@ -42,3 +42,26 @@ input[type=range]:active::-webkit-slider-thumb {
     background: #212529;
     opacity: 0.7;
 }
+
+.setting {
+    width: auto;
+}
+.setting-div {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    width: auto;
+    height: 120px;
+    margin-right: 1rem;
+}
+
+@media (max-width: 576px) { 
+    .setting {
+        width: 100%;
+    }
+    .setting-div {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 0px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}

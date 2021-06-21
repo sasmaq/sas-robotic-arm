@@ -84,14 +84,32 @@ mysqli_close($dbc);
       </button>
       <!-- Modal -->
       <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="settingModalLabel">Settings</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              <div class="d-flex flex-md-row flex-column align-items-start">
+                <div class="nav flex-column nav-pills me-3 setting" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button class="nav-link active" id="v-pills-Welcome-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Welcome" type="button" role="tab" aria-controls="v-pills-Welcome" aria-selected="true">Welcome</button>
+                  <button class="nav-link" id="v-pills-WebSocket-tab" data-bs-toggle="pill" data-bs-target="#v-pills-WebSocket" type="button" role="tab" aria-controls="v-pills-WebSocket" aria-selected="false">WebSocket</button>
+                  <button class="nav-link" id="v-pills-Theme-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Theme" type="button" role="tab" aria-controls="v-pills-Theme" aria-selected="false">Theme</button>
+                </div>
+                <div class="setting-div"></div>
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-Welcome" role="tabpanel" aria-labelledby="v-pills-Welcome-tab">
+                    Welcome!!
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-WebSocket" role="tabpanel" aria-labelledby="v-pills-WebSocket-tab">
+                    WebSocket
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-Theme" role="tabpanel" aria-labelledby="v-pills-Theme-tab">
+                    Theme
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
