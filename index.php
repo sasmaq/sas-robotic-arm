@@ -92,27 +92,27 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
             <div class="modal-body">
               <div class="d-flex flex-md-row flex-column align-items-start">
                 <div class="nav flex-column nav-pills me-3 setting" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <button class="nav-link active" id="v-pills-Welcome-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Welcome" type="button" role="tab" aria-controls="v-pills-Welcome" aria-selected="true">Welcome</button>
-                  <button class="nav-link" id="v-pills-WebSocket-tab" data-bs-toggle="pill" data-bs-target="#v-pills-WebSocket" type="button" role="tab" aria-controls="v-pills-WebSocket" aria-selected="false">WebSocket</button>
-                  <button class="nav-link" id="v-pills-Theme-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Theme" type="button" role="tab" aria-controls="v-pills-Theme" aria-selected="false">Theme</button>
+                  <button class="nav-link m-1 active" id="v-pills-General-tab" data-bs-toggle="pill" data-bs-target="#v-pills-General" type="button" role="tab" aria-controls="v-pills-General" aria-selected="true">General</button>
+                  <button class="nav-link m-1" id="v-pills-WebSocket-tab" data-bs-toggle="pill" data-bs-target="#v-pills-WebSocket" type="button" role="tab" aria-controls="v-pills-WebSocket" aria-selected="false">WebSocket</button>
+                  <button class="nav-link m-1" id="v-pills-Theme-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Theme" type="button" role="tab" aria-controls="v-pills-Theme" aria-selected="false">Theme</button>
                 </div>
                 <div class="setting-div"></div>
                 <div class="tab-content" id="v-pills-tabContent">
-                  <div class="tab-pane fade show active" id="v-pills-Welcome" role="tabpanel" aria-labelledby="v-pills-Welcome-tab">
-                    Welcome!!
+                  <div class="tab-pane fade show active" id="v-pills-General" role="tabpanel" aria-labelledby="v-pills-General-tab">
+                    General settings for the controller.
                   </div>
                   <div class="tab-pane fade" id="v-pills-WebSocket" role="tabpanel" aria-labelledby="v-pills-WebSocket-tab">
-                    WebSocket
+                    WebSocket settings.
                   </div>
                   <div class="tab-pane fade" id="v-pills-Theme" role="tabpanel" aria-labelledby="v-pills-Theme-tab">
-                    Theme
+                    Theme settings.
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-dark">Save changes</button>
             </div>
           </div>
         </div>
@@ -160,17 +160,17 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
           <div class="card-body">
             <form id="angles" action="php_sql/setMotorValues.php" method="POST">
               <label for="Motor1Range" class="form-label">Motor 1</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor1Range" name="Motor1" <?php include 'php_sql/getMotor1.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor1Range" name="Motor1" <?php include 'php_sql/getMotor1.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor2Range" class="form-label">Motor 2</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor2Range" name="Motor2" <?php include 'php_sql/getMotor2.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor2Range" name="Motor2" <?php include 'php_sql/getMotor2.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor3Range" class="form-label">Motor 3</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor3Range" name="Motor3" <?php include 'php_sql/getMotor3.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor3Range" name="Motor3" <?php include 'php_sql/getMotor3.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor4Range" class="form-label">Motor 4</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor4Range" name="Motor4" <?php include 'php_sql/getMotor4.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor4Range" name="Motor4" <?php include 'php_sql/getMotor4.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor5Range" class="form-label">Motor 5</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor5Range" name="Motor5" <?php include 'php_sql/getMotor5.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor5Range" name="Motor5" <?php include 'php_sql/getMotor5.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor6Range" class="form-label">Motor 6</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor6Range" name="Motor6" <?php include 'php_sql/getMotor6.php';?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor6Range" name="Motor6" <?php include 'php_sql/getMotor6.php'; ?> <?php echo $isDisabled; ?>>
               <button type="submit" name="submit" class="btn btn-dark" <?php echo $isDisabled; ?>>Submit</button>
             </form>
           </div>

@@ -49,7 +49,7 @@ input[type=range]:active::-webkit-slider-thumb {
 .setting-div {
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     width: auto;
-    height: 120px;
+    height: 144px;
     margin-right: 1rem;
 }
 
@@ -64,4 +64,16 @@ input[type=range]:active::-webkit-slider-thumb {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
+}
+
+.nav-link {
+    color: #212529;
+}
+.nav-link:hover{
+    color: #fff;
+    background-color: #212529;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #212529;
 }
