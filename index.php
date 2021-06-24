@@ -13,7 +13,6 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
   $isLabel = "ON";
 };
 
-mysqli_close($dbc);
 ?>
 
 <!doctype html>
@@ -159,19 +158,19 @@ mysqli_close($dbc);
       <div class="col">
         <div class="card my-2" style="height: 28rem;">
           <div class="card-body">
-            <form id="angles" action="#">
+            <form id="angles" action="#" method="GET">
               <label for="Motor1Range" class="form-label">Motor 1</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor1Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor1Range" name="Motor1" <?php include 'php_sql/getMotor1.php';?> <?php echo $isDisabled; ?>>
               <label for="Motor2Range" class="form-label">Motor 2</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor2Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor2Range" name="Motor2" <?php include 'php_sql/getMotor2.php';?> <?php echo $isDisabled; ?>>
               <label for="Motor3Range" class="form-label">Motor 3</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor3Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor3Range" name="Motor3" <?php include 'php_sql/getMotor3.php';?> <?php echo $isDisabled; ?>>
               <label for="Motor4Range" class="form-label">Motor 4</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor4Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor4Range" name="Motor4" <?php include 'php_sql/getMotor4.php';?> <?php echo $isDisabled; ?>>
               <label for="Motor5Range" class="form-label">Motor 5</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor5Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor5Range" name="Motor5" <?php include 'php_sql/getMotor5.php';?> <?php echo $isDisabled; ?>>
               <label for="Motor6Range" class="form-label">Motor 6</label>
-              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor6Range" <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="360" step="5" id="Motor6Range" name="Motor6" <?php include 'php_sql/getMotor6.php';?> <?php echo $isDisabled; ?>>
               <button type="submit" class="btn btn-dark" <?php echo $isDisabled; ?>>Submit</button>
             </form>
           </div>
