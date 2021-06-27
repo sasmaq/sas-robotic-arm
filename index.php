@@ -232,6 +232,8 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
   <script>
     function myFunction(id) {
       var direction = id;
+      $(".activeClass").removeClass("activeClass");
+      $("#"+id).addClass("activeClass");
       $.ajax({
         url: "php_sql/updateMovement.php",
         method: "POST",

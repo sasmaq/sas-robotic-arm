@@ -77,3 +77,9 @@ input[type=range]:active::-webkit-slider-thumb {
     color: #fff;
     background-color: #212529;
 }
+
+.activeClass{
+    color: #fff;
+    background-color: #212529;
+    pointer-events: none;
+}
