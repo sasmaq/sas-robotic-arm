@@ -1,9 +1,11 @@
 <?php
 require_once 'conn.php';
-$sql = "SELECT Value FROM controller where Name = 'Motor3' ";
+$name;
+$lastMotor = 'Motor6';
+$sql = "SELECT Value FROM controller where Name = '$name' ";
 $result = mysqli_query($dbc,$sql);
 
-  while($row = $result->fetch_assoc()) {
+while($row = $result->fetch_assoc()) {
     if ($result->num_rows >0) {
         $Value = $row["Value"];
 
@@ -12,5 +14,8 @@ $result = mysqli_query($dbc,$sql);
     } else {
         echo "0";
     }
-    }
+}
+if($name == $lastMotor ){
+    mysqli_close($dbc);
+}
 ?>
