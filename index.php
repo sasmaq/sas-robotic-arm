@@ -185,37 +185,37 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
                   <td>
                   </td>
                   <td>
-                    <input type="radio" name="direction" class="btn-check" id="forward" value="forward" onchange="updateDB();" <?php echo $isDisabled; ?>>
-                    <label for="forward" class="btn btn-secondary"> <i class="bi bi-chevron-up"></i></label>
-                    </input>
+                    <button type="button" class="btn btn-outline-dark controls" id="forward" onclick="myFunction(this.id)" <?php echo $isDisabled; ?>>
+                      <i class="bi bi-chevron-up"></i>
+                    </button>
                   </td>
                   <td>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input type="radio" name="direction" class="btn-check" id="left" value="left" onchange="updateDB();" <?php echo $isDisabled; ?>>
-                    <label for="left" class="btn btn-secondary"><i class="bi bi-arrow-counterclockwise"></i></label>
-                    </input>
+                    <button type="button" class="btn btn-outline-dark controls" id="left" onclick="myFunction(this.id)" <?php echo $isDisabled; ?>>
+                      <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
                   </td>
                   <td>
-                    <input type="radio" name="direction" class="btn-check" id="stop" value="stop" onchange="updateDB();" <?php echo $isDisabled; ?> checked>
-                    <label for="stop" class="btn btn-secondary"><i class="bi bi-stop-circle-fill"></i></label>
-                    </input>
+                    <button type="button" class="btn btn-outline-dark controls" id="stop" onclick="myFunction(this.id)" <?php echo $isDisabled; ?>>
+                      <i class="bi bi-stop-circle-fill"></i>
+                    </button>
                   </td>
                   <td>
-                    <input type="radio" name="direction" class="btn-check" id="right" value="right" onchange="updateDB();" <?php echo $isDisabled; ?>>
-                    <label for="right" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i></label>
-                    </input>
+                    <button type="button" class="btn btn-outline-dark controls" id="right" onclick="myFunction(this.id)" <?php echo $isDisabled; ?>>
+                      <i class="bi bi-arrow-clockwise"></i>
+                    </button>
                   </td>
                 </tr>
                 <tr>
                   <td>
                   </td>
                   <td>
-                    <input type="radio" name="direction" class="btn-check" id="backward" value="backward" onchange="updateDB();" <?php echo $isDisabled; ?>>
-                    <label for="backward" class="btn btn-secondary"><i class="bi bi-chevron-down"></i></label>
-                    </input>
+                    <button type="button" class="btn btn-outline-dark controls" id="backward" onclick="myFunction(this.id)" <?php echo $isDisabled; ?>>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
                   </td>
                   <td>
                   </td>
@@ -228,26 +228,22 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
 
     </div>
   </div>
-  <div id="test">
 
-  </div>
+  <script>
+    function myFunction(id) {
+      var direction = id;
+      $.ajax({
+        url: "updateDB.php",
+        method: "POST",
+        data: {
+          direction: direction
+        },
+      });
+    };
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-      $('input[type="radio"]').click(function() {
-        var direction = $(this).val();
-        document.getElementById("test").innerHTML = direction;
-        $.ajax({
-          url: "updateDB.php",
-          method: "POST",
-          data: {
-            direction: direction
-          },
-        });
-      });
-    });
-  </script>
 </body>
 
 </html>
