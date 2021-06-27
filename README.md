@@ -15,4 +15,5 @@ This work was done in collaboration between:
 ---------كفريق عمل---------
 
 
-![alt text](https://github.com/sasmaq/sas-robotic-arm/blob/main/screenshot.png?raw=true)
+![alt text](https://github.com/sasmaq/sas-robotic-arm/blob/main/screenshots/screenshot.png?raw=true)
+![alt text](https://github.com/sasmaq/sas-robotic-arm/blob/main/screenshots/screenshot_mobile.png?raw=true)
