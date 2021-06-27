@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2021 at 10:13 AM
+-- Generation Time: Jun 27, 2021 at 12:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+03:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,16 +28,17 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `basedirection` (
-  `direction` varchar(10) NOT NULL,
-  `id` int(1) NOT NULL
+  `id` int(8) NOT NULL,
+  `direction` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `basedirection`
 --
 
-INSERT INTO `basedirection` (`direction`, `id`) VALUES
-('backward', 1);
+INSERT INTO `basedirection` (`id`, `direction`, `timestamp`) VALUES
+(1, 'forward', '2021-06-27 10:19:21');
 
 -- --------------------------------------------------------
 
@@ -57,13 +58,13 @@ CREATE TABLE `controller` (
 --
 
 INSERT INTO `controller` (`ID`, `Name`, `Value`, `TimeStamp`) VALUES
-(0, 'Status', 1, '2021-06-27 04:57:06'),
-(1, 'Maotor1', 10, '2021-06-21 03:57:17'),
-(2, 'Maotor2', 0, '2021-06-20 07:22:23'),
-(3, 'Maotor3', 0, '2021-06-20 07:22:29'),
-(4, 'Maotor4', 0, '2021-06-20 07:22:34'),
-(5, 'Maotor5', 0, '2021-06-20 07:22:38'),
-(6, 'Maotor6', 0, '2021-06-20 07:22:44');
+(0, 'Status', 1, '2021-06-27 10:18:28'),
+(1, 'Motor1', 10, '2021-06-27 10:15:05'),
+(2, 'Motor2', 35, '2021-06-27 10:19:10'),
+(3, 'Motor3', 0, '2021-06-27 10:15:05'),
+(4, 'Motor4', 0, '2021-06-27 10:15:05'),
+(5, 'Motor5', 0, '2021-06-27 10:15:05'),
+(6, 'Motor6', 0, '2021-06-27 10:15:05');
 
 --
 -- Indexes for dumped tables
