@@ -13,6 +13,10 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
   $isLabel = "ON";
 };
 
+$query = "SELECT * FROM basedirection WHERE ID = 1";
+$result = mysqli_fetch_assoc(mysqli_query($dbc, $query));
+$activeClassId = $result['direction'];
+
 ?>
 
 <!doctype html>
@@ -160,22 +164,23 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
           <div class="card-body">
             <form id="angles" action="php_sql/setMotorValues.php" method="POST">
               <label for="Motor1Range" class="form-label">Motor 1</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor1Range" name="Motor1" <?php $name="Motor1"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor1Range" name="Motor1" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor1"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor2Range" class="form-label">Motor 2</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor2Range" name="Motor2" <?php $name="Motor2"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor2Range" name="Motor2" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor2"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor3Range" class="form-label">Motor 3</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor3Range" name="Motor3" <?php $name="Motor3"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor3Range" name="Motor3" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor3"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor4Range" class="form-label">Motor 4</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor4Range" name="Motor4" <?php $name="Motor4"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor4Range" name="Motor4" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor4"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor5Range" class="form-label">Motor 5</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor5Range" name="Motor5" <?php $name="Motor5"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor5Range" name="Motor5" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor5"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <label for="Motor6Range" class="form-label">Motor 6</label>
-              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor6Range" name="Motor6" <?php $name="Motor6"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
+              <input type="range" class="form-range" min="0" max="180" step="5" id="Motor6Range" name="Motor6" data-bs-toggle="tooltip" data-bs-placement="top" title="" <?php $name="Motor6"; include 'php_sql/getMotor.php'; ?> <?php echo $isDisabled; ?>>
               <button type="submit" name="submit" class="btn btn-dark" <?php echo $isDisabled; ?>>Submit</button>
             </form>
           </div>
         </div>
       </div>
+
       <div class="col">
         <div class="card my-2" style="height: 28rem;">
           <div class="card-body d-flex justify-content-center">
@@ -230,6 +235,7 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
   </div>
 
   <script>
+    $("#<?php echo $activeClassId ?>").addClass("activeClass");
     function myFunction(id) {
       var direction = id;
       $(".activeClass").removeClass("activeClass");
@@ -246,6 +252,23 @@ if (mysqli_fetch_assoc($result)["Value"] == 1) {
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  <script>
+    $('input', '#angles').each(function () {
+      $(this).prop('title', $(this).val());
+    });
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+    })
+    
+    $(document).ready(function() {
+      $("#angles").children('input').on('input', function() { 
+        $(this).prop('title', $(this).val());
+        $(this).tooltip().attr('data-bs-original-title', $(this).val()).tooltip('show');
+      });
+    });
+  </script>
 </body>
 
 </html>
